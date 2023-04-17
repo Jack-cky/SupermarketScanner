@@ -1,0 +1,19 @@
+names:
+- blueberry
+- bread
+- chicken
+- egg
+- juice
+- melon
+- sushi
+- watermelon
+nc: 8
+roboflow:
+  license: CC BY 4.0
+  project: supermarketscanner
+  url: https://universe.roboflow.com/jack-chan-edpdi/supermarketscanner/dataset/5
+  version: 5
+  workspace: jack-chan-edpdi
+test: test/images
+train: train/images
+val: valid/images
