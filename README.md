@@ -1,9 +1,10 @@
 <a name="0"></a>
-<p align="center">
-    <a href="#0">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/project_banner.png" width="100%">
-    </a>
-</p>
+
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/project_banner.png" width="100%">
+  </a>
+</div>
 
 In early April, two doctors were found guilty of stealing food worth over HKD 1,600 from the Purple Label supermarket in Hong Kong, according to [The Standard](https://www.thestandard.com.hk/breaking-news/section/4/202373/Two-top-doctors-each-fined-HK$5,000-for-stealing-food-from-AEON-in-Whampoa) (2023). Although they claimed to have forgotten to scan the items on the self-checkout counter due to being distracted, their selective scanning behavior revealed otherwise, leading the magistrate to reject their claim. Unfortunately, retail theft involving self-checkouts has been a prevalent issue for retailers, causing them significant financial losses.
 
@@ -30,11 +31,11 @@ With SupermarketScanner, all you need to do is place your items on the self-chec
 
 Say goodbye to long lines and hello to hassle-free checkout with SupermarketScanner, your ultimate shopping companion.
 
-<p align="center">
-    <a href="#0">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/product_demo.gif" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/product_demo.gif" width="70%">
+  </a>
+</div>
 
 
 <a name="2"></a>
@@ -44,11 +45,11 @@ Our project involves using YOLO v8, which includes a pre-trained model on the CO
 
 To label these product images, we utilised [Roboflow](https://universe.roboflow.com/jack-chan-edpdi/supermarketscanner) for an efficient solution. Although there is no fixed number of images needed per category, 55 falls short of training our model to perform at its best. Therefore, we augmented our training set with various image transformations, increasing the number of training examples threefold.
 
-<p align="center">
-    <a href="https://universe.roboflow.com/jack-chan-edpdi/supermarketscanner">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/image_preprocessing.gif" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="https://universe.roboflow.com/jack-chan-edpdi/supermarketscanner">
+    <img src="./imgs/image_preprocessing.gif" width="70%">
+  </a>
+</div>
 
 
 <a name="3"></a>
@@ -56,19 +57,19 @@ To label these product images, we utilised [Roboflow](https://universe.roboflow.
 ## Model Performance: Achieving Exceptional Accuracy and Reliability for Self-Checkout Counter
 After training our model with supermarket images at default settings, it achieved impressive results of 87.2% mAP50 (mean average precision at IOU 0.5) on the dev set and 93.4% on the test set. Our comparison of models trained on images without augmentation showed that the current version outperformed its counterpart, which had less training data. Notably, we observed that the majority of entries in the confusion matrix fell into the diagonal for both the dev and test sets, further supporting the high performance of our trained model.
 
-<p align="center">
-    <a href="#0">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/model_evaluation.png" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/model_evaluation.png" width="70%">
+  </a>
+</div>
 
 Following an extensive evaluation of our model's performance, we manually tested it on a set of 48 images. Remarkably, our analysis revealed that the model made accurate predictions on 94% of these images, highlighting its exceptional accuracy and reliability. Consequently, we have decided to use this robust model to power our SupermarketScanner operating at the self-checkout counter. We are confident that its remarkable performance will enhance customer experience and streamline the checkout process.
 
-<p align="center">
-    <a href="#0">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/prediction_on_test_set.png" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/prediction_on_test_set.png" width="70%">
+  </a>
+</div>
 
 
 <a name="4"></a>
@@ -81,30 +82,30 @@ It was time to put SupermarketScanner to the test at the self-checkout counter. 
 ### One Good Per Transaction
 We were immediately impressed by SupermarketScanner's swift identification of each item, accurately displaying its price and transaction summary without delay. Nevertheless, our confidence in the YOLO model faltered somewhat as it struggled to recognise the blueberries during checkout.
 
-<p align="center">
-    <a href="#0">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/sample_goods.gif" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/sample_goods.gif" width="70%">
+  </a>
+</div>
 
 <a name="4.2"></a>
 
 ### Multiple Goods Per Transaction
 SupermarketScanner's ability to recognise and process multiple items at once is crucial for modern supermarkets. Our tests showed that SupermarketScanner can detect various products very robustly, even those with similar shapes or packaging. It can quickly and seamlessly process multiple items, reducing wait times and improving customer satisfaction.
 
-<p align="center">
-    <a href="#0">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/sample_transaction.gif" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/sample_transaction.gif" width="70%">
+  </a>
+</div>
 
 SupermarketScanner is a promising tool that has the potential to revolutionise retail operations. However, our rigorous testing has revealed some areas that need improvement before its implementation. Specifically, SupermarketScanner struggles with identifying certain products accurately, as evidenced by its inability to detect blueberries in some transactions. This could result in significant financial losses for retailers. Moreover, the tool falters when it comes to labeling items correctly at different angles and dealing with overlapping items. As such, these problems need urgent attention to ensure that SupermarketScanner functions effectively once implemented. Failure to address these issues could lead to significant financial losses for retailers. Therefore, it is crucial to rectify them before deploying the tool in a production environment.
 
-<p align="center">
-    <a href="#0">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/sample_failed_transaction.gif" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/sample_failed_transaction.gif" width="70%">
+  </a>
+</div>
 
 
 <a name="5"></a>
@@ -118,11 +119,11 @@ As part of the experiment iteration for SupermarketScanner, several issues were 
 2. SupermarketScanner's performance is suboptimal when it encounters **rotated items**.
   -  Solution: Apply image augmentation to the training set to ensure that the model is better equipped to handle varied orientations.
 
-<p align="center">
-    <a href="#0">
-        <img src="./imgs/existing_problem_1.png" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/existing_problem_1.png" width="70%">
+  </a>
+</div>
 
 3. A **class imbalance** causes SupermarketScanner to fail in accurately identifying certain classes.
     - Solution: Gather more images from underrepresented classes to achieve a balanced data distribution.
@@ -133,11 +134,11 @@ As part of the experiment iteration for SupermarketScanner, several issues were 
 5. The data distribution is not identical across train-test and deploy sets, resulting in a **non-identical data distribution**.
     - Solution: Obtain images from the self-checkout counter and organize them into a dev-test set. Verify that the dev-test set accurately reflects the real test environment (self-checkout counter), and evaluate the model on multiple test sets to ensure generalizability.
 
-<p align="center">
-    <a href="#0">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/existing_problem_2.png" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="#0">
+    <img src="./imgs/existing_problem_2.png" width="70%">
+  </a>
+</div>
 
 
 <a name="6"></a>
@@ -149,12 +150,12 @@ Our aim is to showcase a solution to the problem, but **can SupermarketScanner r
 
 So, **is SupermarketScanner entirely useless?** _Not quite_. It is possible to use SupermarketScanner as a back-end system to double-check whether customers have scanned all their items before completing their transactions, helping supermarkets prevent self-checkout thefts. For example, if a pair of customers forgets to scan items valued at over HKD 1,600, SupermarketScanner can alert security or staff to investigate further. Although SupermarketScanner may not streamline the checkout process, it can help prevent incidents of shoplifting from happening again.
 
-<p align="center">
-    <a href="https://www.thestandard.com.hk/breaking-news/section/4/202373/Two-top-doctors-each-fined-HK$5,000-for-stealing-food-from-AEON-in-Whampoa">
-        <img src="https://github.com/Jack-cky/SupermarketScanner/blob/main/imgs/fictional_transaction.png" width="70%">
-    </a>
-</p>
+<div align="center">
+  <a href="https://www.thestandard.com.hk/breaking-news/section/4/202373/Two-top-doctors-each-fined-HK$5,000-for-stealing-food-from-AEON-in-Whampoa">
+    <img src="./imgs/fictional_transaction.png" width="70%">
+  </a>
+</div>
 
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/Jack-cky/SupermarketScanner/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
