@@ -1,0 +1,13 @@
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+archive/
+data/
+datasets/
+models/*
+!models/fine_tune.onnx
+runs/
+imgs/sources
+.DS_Store
+.env
+cheatsheet.sh

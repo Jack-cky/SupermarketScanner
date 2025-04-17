@@ -1,0 +1,8 @@
+onnx==1.17.0
+onnxruntime==1.19.2
+pytest==8.3.5
+roboflow==1.1.51
+streamlit==1.43.2
+streamlit-image-select==0.6.0
+supervision==0.25.1
+ultralytics==8.3.68
