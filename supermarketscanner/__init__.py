@@ -1,4 +1,4 @@
-try:
-    from .supermarketscanner import SupermarketScanner
-except ImportError:
-    from supermarketscanner.SupermarketScanner import SupermarketScanner
+from .supermarketscanner import SupermarketScanner
+
+
+__all__ = ["SupermarketScanner"]

@@ -11,7 +11,7 @@ create:
 	$(CONDA_PATH) init bash || true
 
 install:
-	$(ACTIVATE) && pip install -r requirements.txt
+	$(ACTIVATE) && pip install -r requirements.txt && pip install .
 
 setup: create install
 

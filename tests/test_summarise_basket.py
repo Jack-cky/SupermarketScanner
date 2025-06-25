@@ -1,11 +1,9 @@
 import os
-import sys
 
 import numpy as np
 import pytest
 import supervision as sv
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from supermarketscanner import SupermarketScanner
 
 

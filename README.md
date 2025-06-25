@@ -1,6 +1,6 @@
 <!-- INTRODUCTION -->
 <div align="center">
-  <a href="https://supermarketscanner.streamlit.app/"><img src="./imgs/project_banner.png"></a>
+  <a href="https://supermarketscanner.streamlit.app/"><img src="./imgs/banner.png"></a>
 </div>
 
 <br>In early April, two doctors were found guilty of stealing food valued at over HKD 1,600 from the Purple Label supermarket in Hong Kong ([The Standard](https://www.thestandard.com.hk/breaking-news/section/4/202373/Two-top-doctors-each-fined-HK$5,000-for-stealing-food-from-AEON-in-Whampoa), 2023). Although they claimed to have forgotten to scan the items at the self-checkout due to distractions, their selective scanning behaviour suggested otherwise, leading the magistrate to dismiss their defence. Unfortunately, retail theft involving self-checkouts has become a pervasive issue for retailers, resulting in significant financial losses.
@@ -8,20 +8,20 @@
 To address this problem, we propose an innovative solution called SupermarketScanner. This system scans all items placed on the self-checkout counter, automatically recognising the sale price and the total number of units in the basket. This not only streamlines the checkout process for customers but also helps retailers prevent future theft incidents by reinforcing their self-checkout systems and ensuring that all products are scanned before customers leave the store.
 
 **First Published:** 17 April 2023  
-**Last Updated:** 17 April 2025
+**Last Updated:** 25 June 2025
 
 
 <!-- ROADMAP -->
 ## Table of Contents
 - [1 - Objective](#1)
-- [2 - System Development](#2)
-- [3 - Model Performance](#3)
-- [4 - Application](#4)
+- [2 - Transfer Learning with Online Images](#2)
+- [3 - Evaluating Model Effectiveness](#3)
+- [4 - Practical Implementation](#4)
     - [4.1 - Single Item per Transaction](#4.1)
     - [4.2 - Multiple Items per Transaction](#4.2)
-- [5 - Error Analysis](#5)
-- [6 - Improvement](#6)
-- [7 - Discussion](#7)
+- [5 - Tackling Model Limitations](#5)
+- [6 - Fine-Tuning with Offline Images](#6)
+- [7 - Reflections on Feasibility](#7)
 
 
 <!-- SECTION 1 -->
@@ -42,7 +42,7 @@ Bid farewell to long queues and embrace hassle-free checkout with SupermarketSca
 <!-- SECTION 2 -->
 <a name="2"></a>
 
-## System Development: Training a YOLO Model through Transfer Learning
+## Transfer Learning with Online Images
 This project employs a pre-trained YOLO v8 model that has been trained on the COCO dataset. However, this model is not directly applicable to our specific domain. To address this limitation, we need to gather our own images by searching online and apply transfer learning to enhance our supermarket product recognition system. As a proof of concept (PoC) project, we selected eight common items: blueberries, bread, chicken, eggs, juice, melon, sushi, and watermelon, collecting 55 images for each item.
 
 To label these images, we utilised [Roboflow](https://universe.roboflow.com/jack-chan-edpdi/supermarketscanner), which provides a user-friendly interface. Due to the limited number of images, it is challenging to train a decent model that can accurately detect items. Therefore, we applied augmentation to the training data using various image transformations, effectively tripling the number of training examples.
@@ -55,7 +55,7 @@ To label these images, we utilised [Roboflow](https://universe.roboflow.com/jack
 <!-- SECTION 3 -->
 <a name="3"></a>
 
-## Model Performance: Achieving Satisfactory Accuracy
+## Evaluating Model Effectiveness
 Behind the scenes, we experimented with multiple methods to train the model. We discovered that models trained with augmented images generally outperformed those without image augmentation. Our final model achieved impressive results, with 87% mAP50 (mean average precision at IoU 0.5) on the development (dev) set and 93% on the test set. The evaluation graphs below show promising signs of the potential for implementing the model in real-world applications. We cannot wait to see how it performs at the self-checkout counter.
 
 <div align="center">
@@ -66,7 +66,7 @@ Behind the scenes, we experimented with multiple methods to train the model. We 
 <!-- SECTION 4 -->
 <a name="4"></a>
 
-## Application: Testing SupermarketScanner on Our Desk
+## Practical Implementation
 It is time to put SupermarketScanner into practical application. We selected a range of products for testing: blueberries, bread, eggs, juice, and sushi. These items were arranged on the desk to simulate the checkout process.
 
 <a name="4.1"></a>
@@ -97,7 +97,7 @@ However, things are not as perfect as they seem. Another set of transactions rev
 <!-- SECTION 5 -->
 <a name="5"></a>
 
-## Error Analysis: Learning from Mistakes
+## Tackling Model Limitations
 As part of the iterative process in developing SupermarketScanner, several problems were identified during this trial. Below, we highlight key issues and propose solutions to address them.
 
 1. **Misclassification of Background Noise**: At times, the system misclassifies background noise as an object.
@@ -129,7 +129,7 @@ By addressing these issues, we can enhance the effectiveness of SupermarketScann
 <!-- SECTION 6 -->
 <a name="6"></a>
 
-## Improvement: Fine-Tuning with Images from Self-Checkout Counter
+## Fine-Tuning with Offline Images
 SupermarketScanner was initially trained using online images, which differ significantly from the environment in our specific use case. To enhance the system's ability to detect items on the self-checkout counter, we needed to incorporate images captured directly from the counter. We sacrificed transactions involving single products, as demonstrated in the previous section, to fine-tune the YOLO model. Meanwhile, we manually synthesised additional images with various rotations from those videos. The remaining six transaction samples were then used to evaluate the overall model performance.
 
 We are excited about the results, which show that the fine-tuned model significantly outperforms the initial version, demonstrating a higher capability to detect items on the table. As shown below, it can now correctly identify blueberries and eggs, which the initial model struggled to detect. However, the system still fails to identify overlapping items on the desk. This limitation arises because we did not expose the model to such scenarios during training and fine-tuning, making it understandable that the system struggles in these cases. This highlights an area for further improvement in the future.
@@ -142,7 +142,7 @@ We are excited about the results, which show that the fine-tuned model significa
 <!-- SECTION 7 -->
 <a name="7"></a>
 
-## Discussion: Thoughts on SupermarketScanner
+## Reflections on Feasibility
 SupermarketScanner is a project that leverages technology to address the real-life problem of retail theft at self-checkout counters. While this project serves as a PoC, it is important to note that the YOLO model we trained for this purpose is not yet ready for deployment in a production environment.
 
 Our aim is to demonstrate a potential solution to this issue, but can SupermarketScanner truly address the problem? As a former employee at the Red Label supermarket in Hong Kong, I believe it may not be entirely feasible. Unlike BakeryScanner, which has only around 200 SKUs ([The Standard](https://www.thestandard.com.hk/breaking-news/section/4/195048/A-1-Bakery-announces-technological-breakthroughs-for-the-benefit-of-customers), 2022), most supermarkets stock thousands of items. The time and cost required to train the model and implement an AI camera system could be significant. Moreover, our experiences with BakeryScanner in their stores reveal similar issues, such as the misclassification of background noise and types of bread. However, cashiers can immediately correct these errors. In contrast, SupermarketScanner operates as a self-service machine, meaning that if the system misrecognises an item, it could lead to false alarms and upset customers, resulting in an unpleasant checkout experience.

@@ -1,5 +1,4 @@
 import os
-import sys
 
 import cv2
 import numpy as np
@@ -8,7 +7,6 @@ from PIL import Image
 from streamlit_image_select import image_select
 import torch
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from supermarketscanner import SupermarketScanner
 
 

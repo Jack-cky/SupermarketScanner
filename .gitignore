@@ -1,13 +1,12 @@
 __pycache__/
 .ipynb_checkpoints/
 .pytest_cache/
-archive/
 data/
 datasets/
+imgs/sources/
 models/*
 !models/fine_tune.onnx
 runs/
-imgs/sources
+supermarketscanner.egg-info/
 .DS_Store
 .env
-cheatsheet.sh

@@ -2,6 +2,17 @@
 
 ## [1.0.0] PoC Stage
 
+### [1.0.4] - 2025-06-25
+Improved working prototype efficiency and stability.
+### Added
+- Added a Docker ignore file.
+### Changed
+- Updated the Dockerfile to minimise the image size.
+- Packaged `supermarketscanner` as a library.
+- Adjusted path settings in the notebook.
+### Fixed
+- Resolved the OpenCV import error in Streamlit Cloud by adding `libgl1-mesa-glx` to the package requirements.
+
 ### [1.0.3] - 2025-04-17
 Fine tuned the model and created a demo app.
 ### Added

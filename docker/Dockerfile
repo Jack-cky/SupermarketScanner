@@ -1,36 +1,48 @@
-ARG PYTHON_IMAGE=python:3.10.12-slim-buster
+ARG PYTHON_IMAGE=python:3.10.12-slim-bullseye
 
 # builder stage
 FROM ${PYTHON_IMAGE} AS builder
 
 WORKDIR /app
 
-COPY requirements.txt .
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir --target=packages -r requirements.txt
+COPY supermarketscanner/ supermarketscanner/
+COPY requirements.txt pyproject.toml setup.py ./
 
+RUN python -m venv /opt/venv && \
+    /opt/venv/bin/pip install --no-cache-dir --upgrade pip && \
+    /opt/venv/bin/pip install --no-cache-dir torch torchvision torchaudio \
+    --index-url https://download.pytorch.org/whl/cpu && \
+    /opt/venv/bin/pip install --no-cache-dir -r requirements.txt && \
+    /opt/venv/bin/pip install . --no-deps
+
+# final stage
 FROM ${PYTHON_IMAGE}
+
+WORKDIR /supermarketscanner
 
 RUN apt-get update && \
     apt-get install -y ffmpeg libsm6 libxext6 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# final stage
-RUN useradd -m viewer
+COPY --from=builder /opt/venv /opt/venv
 
-WORKDIR /supermarketscanner
+ENV PATH="/opt/venv/bin:$PATH"
 
-RUN mkdir -p runs && chown -R viewer:viewer runs
-
-COPY --from=builder /app/packages /usr/local/lib/python3.10/site-packages
-
-COPY demo demo
+COPY demo/ demo/
 COPY models/fine_tune.onnx models/fine_tune.onnx
-COPY supermarketscanner supermarketscanner
+COPY supermarketscanner/ supermarketscanner/
 
-ENV PATH="/usr/local/lib/python3.10/site-packages/bin:$PATH"
+# execution
+RUN useradd -m viewer && \
+    chown -R viewer:viewer /supermarketscanner
 
 USER viewer
+
+EXPOSE 8501
 
 CMD ["streamlit", "run", "demo/streamlit_app.py", "--server.fileWatcherType=none", "--server.address=0.0.0.0"]
