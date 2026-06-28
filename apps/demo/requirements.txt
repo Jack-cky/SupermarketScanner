@@ -1,0 +1,13 @@
+huggingface-hub==1.18.0
+numpy==1.26.4
+onnx==1.17.0
+onnxruntime==1.19.2
+opencv-python-headless==4.11.0.86
+pillow==11.0.0
+pyyaml==6.0.2
+streamlit-image-select==0.6.0
+streamlit==1.43.2
+supervision==0.25.1
+tqdm==4.67.3
+ultralytics==8.3.68
+.[demo]

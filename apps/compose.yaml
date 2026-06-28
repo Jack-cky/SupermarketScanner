@@ -1,0 +1,26 @@
+name: smktscnr
+
+services:
+  demo:
+    image: jackcky/smktscnr-demo:latest
+    container_name: smktscnr-demo
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: apps/Dockerfile
+      target: demo
+    ports:
+      - "8501:8501"
+    restart: unless-stopped
+
+  kiosk:
+    image: jackcky/smktscnr-kiosk:latest
+    container_name: smktscnr-kiosk
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: apps/Dockerfile
+      target: kiosk
+    volumes:
+      - ..:/workspace:ro
+    restart: "no"

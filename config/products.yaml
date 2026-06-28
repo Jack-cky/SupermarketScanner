@@ -1,0 +1,19 @@
+colours:
+  blueberry: [100, 149, 237]  # cornflowerblue
+  bread: [221, 160, 221]      # plum
+  chicken: [255, 255, 255]    # white
+  egg: [255, 215, 0]          # gold
+  juice: [255, 99, 71]        # tomato
+  melon: [152, 251, 152]      # palegreen
+  sushi: [255, 228, 181]      # moccasin
+  watermelon: [255, 192, 203] # pink
+
+prices:
+  blueberry: 20
+  bread: 10
+  chicken: 60
+  egg: 30
+  juice: 20
+  melon: 70
+  sushi: 50
+  watermelon: 80

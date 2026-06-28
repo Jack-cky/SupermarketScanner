@@ -1,7 +1,32 @@
 [build-system]
-requires = ["setuptools>=64.0.0", "wheel"]
+requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "supermarketscanner"
-version = "0.1"
+name = "smktscnr"
+version = "1.0.5"
+description = "SupermarketScanner demo and kiosk modules"
+license = { text = "MIT" }
+authors = [{ name = "Jack Chan" }]
+requires-python = "~=3.12.0"
+dependencies = [
+    "numpy==1.26.4",
+    "onnx==1.17.0",
+    "onnxruntime==1.19.2",
+    "opencv-python==4.11.0.86",
+    "Pillow==11.0",
+    "PyYAML==6.0.2",
+    "supervision==0.25.1",
+    "tqdm==4.67.3",
+    "ultralytics==8.3.68",
+]
+
+[project.optional-dependencies]
+demo = [
+    "huggingface-hub==1.18.0",
+    "streamlit-image-select==0.6.0",
+    "streamlit==1.43.2",
+]
+
+[tool.setuptools.packages.find]
+include = ["smktscnr*"]
