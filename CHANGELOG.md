@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.6] - 2026-10-10
+
+Added ONNX inference support and streamlined the demo deployment workflow.
+
+### Added
+- Added an `OnnxModel` implementation using ONNX Runtime for YOLO segmentation inference.
+- Added shared sigmoid, IoU, and non-maximum suppression utilities for model post-processing.
+- Added a dedicated `apps/demo/Dockerfile` for building and running the Streamlit demo.
+- Added an optional headless OpenCV dependency for container deployments.
+
+### Changed
+- Updated the inference engine to load `.onnx`, `.pt`, and `.hef` model formats.
+- Moved demo dependencies into the unified `pyproject.toml` configuration.
+- Simplified the Makefile to build, publish, run, and stop the demo image directly.
+- Updated the README with the latest release date.
+- Expanded `.gitignore` coverage for Python tooling, local environments, and project artefacts.
+
+### Removed
+- Removed the legacy multi-stage `apps/Dockerfile`.
+- Removed Docker Compose orchestration and the separate demo requirements file.
+
 ## [1.0.5] - 2026-06-28
 
 Refactored project structure and streamlined the build/deployment process.

@@ -83,10 +83,8 @@ class SupermarketScanner:
         if not cam.isOpened():
             if src is None:
                 LOGGER.error(
-                    "Failed to open camera. Docker Desktop on macOS does not "
-                    "expose host webcams to Linux containers. Run the kiosk "
-                    "app locally for live camera access, or provide a video "
-                    "file with --source or KIOSK_SOURCE."
+                    "Failed to open camera. Check that a webcam is connected "
+                    "and not in use by another application."
                 )
             else:
                 LOGGER.error(f"Failed to open video source: {src}")

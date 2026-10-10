@@ -7,14 +7,18 @@ class InferenceEngine:
 
     def _load_model(self, weights: str):
         match Path(weights).suffix:
-            case ".onnx" | ".pt":
-                from .torch import TorchModel
-
-                return TorchModel(weights)
             case ".hef":
                 from .hailo import HailoModel
 
                 return HailoModel(weights)
+            case ".onnx":
+                from .onnx import OnnxModel
+
+                return OnnxModel(weights)
+            case ".pt":
+                from .torch import TorchModel
+
+                return TorchModel(weights)
             case _:
                 raise ValueError(f"Unsupported model format: {weights}")
 

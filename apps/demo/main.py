@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 import sys
 
-import torch
 import cv2
 import numpy as np
 import streamlit as st
@@ -15,8 +14,6 @@ if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
 from smktscnr import SupermarketScanner
-
-torch.classes.__path__ = []
 
 MODEL_PATH = ROOT_DIR / "checkpoints" / "smktscnr_ft.onnx"
 ASSETS_DIR = ROOT_DIR / "apps" / "demo" / "assets"

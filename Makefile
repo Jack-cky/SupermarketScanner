@@ -1,28 +1,29 @@
 .PHONY: help build push demo kiosk down
 
-COMPOSE_FILE := apps/compose.yaml
-COMPOSE := docker compose -f $(COMPOSE_FILE)
+IMAGE := jackcky/smktscnr-demo:latest
+NAME  := smktscnr-demo
+PORT  := 8501
 
 help:
 	@echo "Available targets:"
 	@echo "  make help      # Show available targets"
-	@echo "  make build     # Build the demo and kiosk container images"
-	@echo "  make push      # Push the demo and kiosk container images to Docker Hub"
+	@echo "  make build     # Build the demo container image"
+	@echo "  make push      # Push the demo container image to Docker Hub"
 	@echo "  make demo      # Start the demo service in detached mode"
-	@echo "  make kiosk     # Run the kiosk service using the existing image"
-	@echo "  make down      # Stop and remove services defined in apps/compose.yaml"
+	@echo "  make kiosk     # Run the kiosk app locally (needs a webcam)"
+	@echo "  make down      # Stop and remove the demo service"
 
 build:
-	$(COMPOSE) build
+	docker build --platform linux/amd64 -f apps/demo/Dockerfile -t $(IMAGE) .
 
 push:
-	$(COMPOSE) push
+	docker push $(IMAGE)
 
 demo:
-	$(COMPOSE) up -d --no-build demo
+	docker run -d --platform linux/amd64 --name $(NAME) --restart unless-stopped --env-file config/.env -p $(PORT):8501 $(IMAGE)
 
 kiosk:
-	$(COMPOSE) run --rm kiosk
+	uv run python -m apps.kiosk.main
 
 down:
-	$(COMPOSE) down
+	@docker rm -f $(NAME) >/dev/null 2>&1 || true
